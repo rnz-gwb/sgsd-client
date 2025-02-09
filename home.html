@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Date ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+        body {
+            font-family: 'Arial', cursive;
+            background-color: #ffd1dc;
+            text-align: center;
+            padding: 50px;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #e91e63;
+            font-size: 2.5em;
+            font-family: Dancing Script;
+        }
+
+        .gif-container {
+            margin: 20px 0;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            margin: 0 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        #yesBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #yesFakeBtn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #f44336;
+            color: white;
+            position: absolute;
+            transition: all 0.3s;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #message {
+            font-size: 1.6em;
+            color: #e91e63;
+            margin-top: 20px;
+            display: none;
+            font-family: Dancing Script;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will You Be My Valentine? 💝</h1>
+        
+        <div class="gif-container">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzQ5N2E3YjE3YmEwM2I5Y2ZlYjI1ZGI2M2VkZWIxYzkyYjY1YjQxNSZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/3o7aTskHEUdgCQAXde/giphy.gif" alt="Cute animation" width="300">
+        </div>
+
+        <div class="buttons">
+            <button id="noBtn" onmouseover="moveButton()" onclick="handleNo()">No 😢</button>
+        </div>
+
+        <div id="message">
+            Yay! 💖 Can't wait to have a date with you! 🥰<br>
+            Friday, February 14th 🌹
+        </div>
+    </div>
+
+    <script>
+        function handleYes() {
+            const message = document.getElementById('message');
+            message.style.display = 'block';
+            message.style.opacity = 0;
+            message.style.transition = 'opacity 1s, transform 1s';
+            message.style.transform = 'scale(0.5)';
+            setTimeout(() => {
+            message.style.opacity = 1;
+            message.style.transform = 'scale(1)';
+            }, 10);
+            document.querySelector('.buttons').classList.add('hidden');
+        }
+
+        function handleNo() {
+            // The "No" button will always become "Yes"
+            const noBtn = document.getElementById('noBtn');
+            const yesFakeBtn = document.getElementById('yesFakeBtn');
+            noBtn.innerText = "YES! 😍";
+            noBtn.style.backgroundColor = "#4CAF50";
+            noBtn.style.position = "static";
+            noBtn.onclick = handleYes;
+            yesFakeBtn.style.display = 'none';
+            noBtn.onmouseover = null;
+        }
+
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            const container = document.querySelector('.buttons');
+            
+            // Calculate random position within container
+            const maxX = container.offsetWidth - noBtn.offsetWidth;
+            const maxY = container.offsetHeight - noBtn.offsetHeight;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+    </script>
+</body>
+</html>
